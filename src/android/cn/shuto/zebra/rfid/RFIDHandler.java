@@ -28,6 +28,7 @@ import com.zebra.rfid.api3.TagData;
 import com.zebra.rfid.api3.TriggerInfo;
 import com.zebra.rfid.api3.MEMORY_BANK;
 import com.zebra.rfid.api3.TagAccess;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
