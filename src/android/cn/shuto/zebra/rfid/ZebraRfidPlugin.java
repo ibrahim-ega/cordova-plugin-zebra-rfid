@@ -37,6 +37,8 @@ public class ZebraRfidPlugin extends CordovaPlugin {
 
   private static final String WRITE_TAG = "write_tag";
 
+  private static final String LOCK_TAG = "lock_tag";
+
   // --
   private Set<String> tagIdSet = new HashSet<>();
   // --
@@ -160,6 +162,21 @@ public class ZebraRfidPlugin extends CordovaPlugin {
           obj5.put("code", 1);
           obj5.put("msg", "Tag Sucessfully Writed");
           obj5.put("type", type);
+          PluginResult result = new PluginResult(PluginResult.Status.OK, obj5);
+          result.setKeepCallback(true);
+          mCallbackContext.sendPluginResult(result);
+        } catch (Error e) {
+          obj5.put("msg", e.getMessage());
+          mCallbackContext.error(obj5);
+        }
+        break;
+      case LOCK_TAG:
+        JSONObject obj5 = new JSONObject();
+        String sourceEPC = args.optString(0);
+        try {
+          rfidHandler.lockTag(sourceEPC);
+          obj5.put("code", 1);
+          obj5.put("msg", "Tag Sucessfully Locker");
           PluginResult result = new PluginResult(PluginResult.Status.OK, obj5);
           result.setKeepCallback(true);
           mCallbackContext.sendPluginResult(result);
