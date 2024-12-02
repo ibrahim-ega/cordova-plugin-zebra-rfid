@@ -349,7 +349,7 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
       LockAccessParams();
       /* lock now */
       lockAccessParams.setLockPrivilege(LOCK_DATA_FIELD.LOCK_EPC_MEMORY,
-      LOCK_PRIVILEGE.LOCK_PRIVILEGE_READ_WRITE);
+      LOCK_PRIVILEGE.LOCK_PRIVILEGE_PERMA_LOCK);
       lockAccessParams.setAccessPassword(0);
       reader.Actions.TagAccess.lockWait(sourceEPC, lockAccessParams, null);
     } catch (InvalidUsageException e) {
