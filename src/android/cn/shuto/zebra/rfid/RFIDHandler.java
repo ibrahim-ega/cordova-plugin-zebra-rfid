@@ -334,13 +334,13 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
     try {
       MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
       if (type == "EPC") {
-        MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
+         memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
       } else if (type == "USER") {
-        MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_USER;
+         memory_bank = MEMORY_BANK.MEMORY_BANK_USER;
       } else if(type == "PASSWORD") {
-        MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_RESERVED;
+         memory_bank = MEMORY_BANK.MEMORY_BANK_RESERVED;
       } else {
-        MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
+         memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
       }
       TagData tagData = null;
       String tagId = sourceEPC;
