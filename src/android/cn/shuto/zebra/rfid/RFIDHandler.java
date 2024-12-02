@@ -335,7 +335,7 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
     // obj5.put("msg", "Tag Sucessfully Writed");
     try {
       obj5.put("msg", "WriteTag " + targetData);
-      MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_USER;
+      MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
       TagData tagData = null;
       String tagId = sourceEPC;
       TagAccess tagAccess = new TagAccess();
