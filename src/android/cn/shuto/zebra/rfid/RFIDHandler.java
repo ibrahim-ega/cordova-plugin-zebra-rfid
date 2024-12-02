@@ -343,7 +343,6 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
   }
 
   public void lockTag(String sourceEPC) {
-    Log.d(TAG, "WriteTag " + targetData);
     try {
       TagAccess tagAccess = new TagAccess();
       TagAccess.LockAccessParams lockAccessParams = tagAccess.new
@@ -352,7 +351,7 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
       lockAccessParams.setLockPrivilege(LOCK_DATA_FIELD.LOCK_USER_MEMORY,
       LOCK_PRIVILEGE.LOCK_PRIVILEGE_READ_WRITE);
       lockAccessParams.setAccessPassword(0);
-      reader.Actions.TagAccess.lockWait(tagId, lockAccessParams, null);
+      reader.Actions.TagAccess.lockWait(sourceEPC, lockAccessParams, null);
     } catch (InvalidUsageException e) {
         e.printStackTrace();
     } catch (OperationFailureException e) {
