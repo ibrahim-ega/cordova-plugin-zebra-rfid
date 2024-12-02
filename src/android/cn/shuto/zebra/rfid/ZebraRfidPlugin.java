@@ -159,6 +159,7 @@ public class ZebraRfidPlugin extends CordovaPlugin {
           rfidHandler.writeTag(sourceEPC, rfid_password, targetEPC, 2, type);
           obj5.put("code", 1);
           obj5.put("msg", "Tag Sucessfully Writed");
+          obj5.put("type", type);
           PluginResult result = new PluginResult(PluginResult.Status.OK, obj5);
           result.setKeepCallback(true);
           mCallbackContext.sendPluginResult(result);
