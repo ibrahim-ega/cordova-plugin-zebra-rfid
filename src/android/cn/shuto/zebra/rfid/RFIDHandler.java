@@ -357,7 +357,10 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
       e.printStackTrace();
     } catch (OperationFailureException e) {
       e.printStackTrace();
-    }
+    } catch (JSONException e) {
+      e.printStackTrace();
+      Log.e(TAG, "JSON error: " + e.getMessage());
+  }
   }
 
   // Read/Status Notify handler
