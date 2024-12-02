@@ -332,6 +332,7 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
   public void writeTag(String sourceEPC, String Password, String targetData, int offset) {
     Log.d(TAG, "WriteTag " + targetData);
     try {
+      MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
       TagData tagData = null;
       String tagId = sourceEPC;
       TagAccess tagAccess = new TagAccess();
