@@ -28,8 +28,6 @@ import com.zebra.rfid.api3.TagData;
 import com.zebra.rfid.api3.TriggerInfo;
 import com.zebra.rfid.api3.MEMORY_BANK;
 import com.zebra.rfid.api3.TagAccess;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 
 import java.util.ArrayList;
@@ -332,11 +330,8 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
   }
 
   public void writeTag(String sourceEPC, String Password, String targetData, int offset) {
-    JSONObject obj5 = new JSONObject();
-    // obj5.put("msg", "Tag Sucessfully Writed");
+    Log.d(TAG, "WriteTag " + targetData);
     try {
-      obj5.put("msg", "WriteTag " + targetData);
-      MEMORY_BANK memory_bank = MEMORY_BANK.MEMORY_BANK_EPC;
       TagData tagData = null;
       String tagId = sourceEPC;
       TagAccess tagAccess = new TagAccess();
@@ -358,10 +353,7 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
       e.printStackTrace();
     } catch (OperationFailureException e) {
       e.printStackTrace();
-    } catch (JSONException e) {
-      e.printStackTrace();
-      Log.e(TAG, "JSON error: " + e.getMessage());
-  }
+    }
   }
 
   // Read/Status Notify handler
