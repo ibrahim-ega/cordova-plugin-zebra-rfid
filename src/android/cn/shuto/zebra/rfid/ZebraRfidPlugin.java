@@ -176,7 +176,7 @@ public class ZebraRfidPlugin extends CordovaPlugin {
         try {
           rfidHandler.lockTag(sourceEPC);
           obj5.put("code", 1);
-          obj5.put("msg", "Tag Sucessfully Locker");
+          obj5.put("msg", "Tag Sucessfully Locked");
           PluginResult result = new PluginResult(PluginResult.Status.OK, obj5);
           result.setKeepCallback(true);
           mCallbackContext.sendPluginResult(result);
