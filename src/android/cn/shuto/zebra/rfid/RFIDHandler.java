@@ -348,7 +348,7 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
       TagAccess.LockAccessParams lockAccessParams = tagAccess.new
       LockAccessParams();
       /* lock now */
-      lockAccessParams.setLockPrivilege(LOCK_DATA_FIELD.LOCK_USER_MEMORY,
+      lockAccessParams.setLockPrivilege(LOCK_DATA_FIELD.LOCK_EPC_MEMORY,
       LOCK_PRIVILEGE.LOCK_PRIVILEGE_READ_WRITE);
       lockAccessParams.setAccessPassword(0);
       reader.Actions.TagAccess.lockWait(sourceEPC, lockAccessParams, null);
