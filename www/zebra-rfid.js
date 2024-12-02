@@ -27,3 +27,7 @@ exports.change_power = function (arg0, success, error) {
 exports.write_tag = function (arg0, arg1, arg2, arg3, success, error) {
     exec(success, error, 'zebraRfid', 'write_tag', [arg0, arg1, arg2, arg3]);
 };
+
+exports.lock_tag = function (arg0, success, error) {
+    exec(success, error, 'zebraRfid', 'lock_tag', [arg0]);
+};
