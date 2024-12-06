@@ -33,9 +33,9 @@ exports.lock_tag = function (arg0, success, error) {
 };
 
 exports.start_read = function (success, error) {
-    exec(success, error, 'zebraRfid', 'start_read');
+    exec(success, error, 'zebraRfid', 'start_read', []);
 };
 
 exports.stop_read = function (success, error) {
-    exec(success, error, 'zebraRfid', 'stop_read');
+    exec(success, error, 'zebraRfid', 'stop_read', []);
 };
