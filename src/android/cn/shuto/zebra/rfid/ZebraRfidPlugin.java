@@ -245,8 +245,8 @@ public class ZebraRfidPlugin extends CordovaPlugin {
   };
 
   private void startInventory(CallbackContext callbackContext) {
-    tagIdSet.clear(); // Clear previous tag data
-    rfidHandler.performInventory(); // Start inventory
+    tagIdSet.clear();
+    rfidHandler.performInventory();
     JSONObject response = new JSONObject();
     try {
         response.put("code", 1);
@@ -260,7 +260,7 @@ public class ZebraRfidPlugin extends CordovaPlugin {
   }
 
   private void stopInventory(CallbackContext callbackContext) {
-    rfidHandler.stopInventory(); // Stop inventory
+    rfidHandler.stopInventory();
     JSONObject response = new JSONObject();
     try {
         response.put("code", 1);
