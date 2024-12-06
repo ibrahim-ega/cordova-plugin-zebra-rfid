@@ -189,48 +189,13 @@ public class ZebraRfidPlugin extends CordovaPlugin {
           mCallbackContext.error(obj6);
         }
         break;
-        case START_READ:
-        JSONObject obj7 = new JSONObject();
-        TagData[] tagData;
-        try {
-          tagIdSet.clear();
-          rfidHandler.performInventory();
-
-          if (isHandle) {
-            return;
-          }
-          isHandle = true;
-          for (TagData tagDatum : tagData) {
-            if (tagIdSet.contains(tagDatum.getTagID())) {
-              isSend = false;
-              break;
-            } else {
-              tagIdSet.add(tagDatum.getTagID());
-              isSend = true;
-            }
-          }
-          if (isSend && !tagIdSet.isEmpty()) {
-            // --
-              obj7.put("code", "1");
-              obj7.put("data", tagIdSet);
-              PluginResult result = new PluginResult(PluginResult.Status.OK, obj7);
-              result.setKeepCallback(true);
-              mCallbackContext.sendPluginResult(result);
-          }
-          isHandle = false;
-        } catch (Error e) {
-          obj7.put("msg", e.getMessage());
-          mCallbackContext.error(obj7);
-        }
+      case START_READ:
+        startInventory(mCallbackContext);
+        return true;
         break;
-        case STOP_READ:
-        JSONObject obj8 = new JSONObject();
-        try {
-          rfidHandler.stopInventory();
-        } catch (Error e) {
-          obj7.put("msg", e.getMessage());
-          mCallbackContext.error(obj7);
-        }
+      case STOP_READ:
+        stopInventory(mCallbackContext);
+        return true;
         break;
     }
     return true;
@@ -280,6 +245,29 @@ public class ZebraRfidPlugin extends CordovaPlugin {
       }
     }
   };
+
+  // @Override
+  // public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+  //   if ("start_read".equals(action)) {
+  //     startInventory(callbackContext);
+  //     return true;
+  //   } else if ("stop_read".equals(action)) {
+  //     stopInventory(callbackContext);
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  private void startInventory(CallbackContext callbackContext) {
+    tagIdSet.clear();
+    rfidHandler.performInventory();
+    callbackContext.success("Inventory started");
+  }
+
+  private void stopInventory(CallbackContext callbackContext) {
+    rfidHandler.stopInventory();
+    callbackContext.success("Inventory stopped");
+  }
 
   @Override
   public void onDestroy() {
