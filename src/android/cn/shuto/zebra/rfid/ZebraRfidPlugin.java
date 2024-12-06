@@ -244,27 +244,33 @@ public class ZebraRfidPlugin extends CordovaPlugin {
     }
   };
 
-  // @Override
-  // public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-  //   if ("start_read".equals(action)) {
-  //     startInventory(callbackContext);
-  //     return true;
-  //   } else if ("stop_read".equals(action)) {
-  //     stopInventory(callbackContext);
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
   private void startInventory(CallbackContext callbackContext) {
-    tagIdSet.clear();
-    rfidHandler.performInventory();
-    callbackContext.success("Inventory started");
+    tagIdSet.clear(); // Clear previous tag data
+    rfidHandler.performInventory(); // Start inventory
+    JSONObject response = new JSONObject();
+    try {
+        response.put("code", 1);
+        response.put("msg", "Reading started");
+        PluginResult result = new PluginResult(PluginResult.Status.OK, response);
+        result.setKeepCallback(true);
+        callbackContext.sendPluginResult(result);
+    } catch (JSONException e) {
+        callbackContext.error("Error starting inventory: " + e.getMessage());
+    }
   }
 
   private void stopInventory(CallbackContext callbackContext) {
-    rfidHandler.stopInventory();
-    callbackContext.success("Inventory stopped");
+    rfidHandler.stopInventory(); // Stop inventory
+    JSONObject response = new JSONObject();
+    try {
+        response.put("code", 1);
+        response.put("msg", "Reading stopped");
+        PluginResult result = new PluginResult(PluginResult.Status.OK, response);
+        result.setKeepCallback(true);
+        callbackContext.sendPluginResult(result);
+    } catch (JSONException e) {
+        callbackContext.error("Error stopping inventory: " + e.getMessage());
+    }
   }
 
   @Override
