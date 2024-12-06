@@ -359,6 +359,8 @@ class RFIDHandler implements Readers.RFIDReaderEventHandler {
     }
   }
 
+  
+
   // Read/Status Notify handler
   // Implement the RfidEventsLister class to receive event notifications
   public class EventHandler implements RfidEventsListener {

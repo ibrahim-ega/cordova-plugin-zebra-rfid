@@ -39,6 +39,10 @@ public class ZebraRfidPlugin extends CordovaPlugin {
 
   private static final String LOCK_TAG = "lock_tag";
 
+  private static final String START_READ = "start_read";
+  
+  private static final String STOP_READ = "stop_read";
+
   // --
   private Set<String> tagIdSet = new HashSet<>();
   // --
@@ -183,6 +187,49 @@ public class ZebraRfidPlugin extends CordovaPlugin {
         } catch (Error e) {
           obj6.put("msg", e.getMessage());
           mCallbackContext.error(obj6);
+        }
+        break;
+        case START_READ:
+        JSONObject obj7 = new JSONObject();
+        TagData[] tagData;
+        try {
+          tagIdSet.clear();
+          rfidHandler.performInventory();
+
+          if (isHandle) {
+            return;
+          }
+          isHandle = true;
+          for (TagData tagDatum : tagData) {
+            if (tagIdSet.contains(tagDatum.getTagID())) {
+              isSend = false;
+              break;
+            } else {
+              tagIdSet.add(tagDatum.getTagID());
+              isSend = true;
+            }
+          }
+          if (isSend && !tagIdSet.isEmpty()) {
+            // --
+              obj7.put("code", "1");
+              obj7.put("data", tagIdSet);
+              PluginResult result = new PluginResult(PluginResult.Status.OK, obj7);
+              result.setKeepCallback(true);
+              mCallbackContext.sendPluginResult(result);
+          }
+          isHandle = false;
+        } catch (Error e) {
+          obj7.put("msg", e.getMessage());
+          mCallbackContext.error(obj7);
+        }
+        break;
+        case STOP_READ:
+        JSONObject obj8 = new JSONObject();
+        try {
+          rfidHandler.stopInventory();
+        } catch (Error e) {
+          obj7.put("msg", e.getMessage());
+          mCallbackContext.error(obj7);
         }
         break;
     }
