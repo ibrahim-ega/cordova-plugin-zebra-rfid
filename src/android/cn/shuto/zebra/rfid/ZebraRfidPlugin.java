@@ -191,11 +191,9 @@ public class ZebraRfidPlugin extends CordovaPlugin {
         break;
       case START_READ:
         startInventory(mCallbackContext);
-        return true;
-        break;
+        break
       case STOP_READ:
         stopInventory(mCallbackContext);
-        return true;
         break;
     }
     return true;
