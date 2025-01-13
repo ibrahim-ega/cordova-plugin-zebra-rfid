@@ -14,11 +14,6 @@ import org.json.JSONObject;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @Auther: lizj
- * @Date: 12/25/20 16:44
- * @Description: Zebra rfid
- */
 public class ZebraRfidPlugin extends CordovaPlugin {
 
   private RFIDHandler rfidHandler;
